@@ -4,7 +4,8 @@
   inputs.nixpkgs.follows = "haskellNix/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   outputs = { self, nixpkgs, flake-utils, haskellNix }:
-    flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ] (system:
+    # flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ] (system:
+    flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
     let
       overlays = [ haskellNix.overlay
         (final: prev: {
@@ -17,7 +18,8 @@
               # `cabal`, `hlint` and `haskell-language-server`
               shell.tools = {
                 cabal = {};
-                hlint = {};
+                stack = "2.11.1";
+                # hlint = {};
                 haskell-language-server = {};
               };
               # Non-Haskell shell tools go here
