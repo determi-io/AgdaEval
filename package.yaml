@@ -35,6 +35,10 @@ ghc-options:
 
 library:
   source-dirs: src
+  dependencies:
+    - Agda
+    - text
+    - containers
 
 executables:
   AgdaEval-exe:
